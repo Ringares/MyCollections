@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.ring.mycollections"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+
+        debug {
+            buildConfigField "boolean", "DEVELOP_MODE", "true"
+        }
+        release {
+            buildConfigField "boolean", "DEVELOP_MODE", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        own {}
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile project(':llog')
+    compile project(':tools')
+    compile project(':mvp')
+
+/*
+    //输出文件名
+    applicationVariants.all { variant ->
+        def buildType = variant.buildType
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (buildType.applicationIdSuffix) {
+                    def fileName = "wms-debug-v${defaultConfig.versionName}-${defaultConfig.versionCode}-${releaseTime()}.apk"
+                    output.outputFile = new File(outputFile.parent, fileName)
+
+                } else {
+                    def fileName = "wms-release-v${defaultConfig.versionName}-${defaultConfig.versionCode}-${releaseTime()}.apk"
+                    output.outputFile = new File(outputFile.parent, fileName)
+
+                }
+            }
+        }
+    }
+
+    //修改debug包的应用名
+    applicationVariants.all { variant ->
+        def buildType = variant.buildType
+        def encoding = java.nio.charset.Charset.defaultCharset().toString()
+        if (buildType.applicationIdSuffix) {
+            //def defaultPackageId = variant.packageName.replaceAll(buildType.applicationIdSuffix,'')
+
+            variant.mergeResources.doLast {
+                def f = file("${buildDir}/intermediates/res/merged/${variant.dirName}/values/values.xml")
+                String content = f.getText(encoding)
+                content = content.replaceAll("快马WMS", "WMS_Test")
+                f.write(content, encoding)
+            }
+        }
+    }
+
+    */
+}

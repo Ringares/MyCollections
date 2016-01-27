@@ -1,0 +1,8 @@
+##logcat配色方案
+
+A=FF2E0E
+D=82F87B
+E=FF6B68
+I=47BB9E
+V=FFF7EE
+W=FF9229
