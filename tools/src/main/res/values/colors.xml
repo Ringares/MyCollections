@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="theme">#ffff4000</color>
+    <!-- 主体色调、突出性文字 -->
+    <color name="theme_sel">#a62a00</color>
+
+    <color name="theme_status_bar">#ffff4000</color>
+    
+    <color name="bg_color">#FFF</color>
+    <!-- 背景色 -->
+
+    <!-- 标题类文字 -->
+    <color name="orange">#ff9500</color>
+    <!-- 辅助性文字 -->
+    <color name="green">#11a629</color>
+    <!-- 次重要性文字 -->
+    <color name="white">#FFF</color>
+    <!-- 深色背景上标题文字 -->
+    
+    <color name="white_10p">#19ffffff</color>
+    <!-- 百分之10白色 -->
+    <color name="white_50p">#7fffffff</color>
+    <!-- 百分之10白色 -->
+
+    <color name="black_10p">#19000000</color>
+    <!-- 百分之15黑色 -->
+    <color name="black_20p">#33000000</color>
+    <!-- 百分之20黑色 -->
+    <color name="black_30p">#4c000000</color>
+    <!-- 百分之30黑色 -->
+    <color name="black_50p">#99000000</color>
+    <!-- 百分之30黑色 -->
+    <color name="black_70p">#b2000000</color>
+    <!-- 百分之70黑色 -->
+    <color name="black_80p">#cc000000</color>
+    <!-- 百分之80黑色 -->
+    <color name="black">#000</color>
+    
+    <color name="grey_bg">#f2f2f2</color>
+
+    <!-- Material Design Color-->
+    <color name="material_red_500">#F44336</color>
+    <color name="material_red_600">#A52A2A</color>
+    <color name="material_cyan_500">#00BCD4</color>
+    <color name="material_teal_500">#009688</color>
+    <color name="material_blue_500">#2196F3</color>
+    <color name="material_green_500">#4CAF50</color>
+    <color name="material_yellow_500">#FFEB3B</color>
+    <color name="horizontal_progress">#00FF99</color>
+    <color name="horizontal_progress_bg">#BF0000</color>
+
+    <color name="trans">#0000</color>
+    <color name="half_trans">#3000</color>
+
+    <color name="grey">#8000</color>
+    <color name="gray">#808080</color>
+    <color name="trans_gray">#7f808080</color>
+    <color name="light_gray">#8a000000</color>
+
+
+    <color name="st_green">#c0f279</color>
+    <color name="st_green2">#55cc00</color>
+    <color name="line_bg">#ffbf00</color>
+    <color name="line_bg2">#ff9500</color>
+    
+    <color name="edt_hint">#cccccc</color>
+    <color name="edt_ok">#666666</color>
+    <color name="b999999">#999999</color>
+    <color name="wf5f5f5">#f5f5f5</color>
+
+    <color name="blue">#2196F3</color>
+</resources>

@@ -20,7 +20,6 @@ public class MainViewDelegate extends ViewDelegate{
         super.initWidget();
         TextView tv = getView(R.id.tv);
         tv.setText("1212121");
-
         FloatingActionButton fab =  getView(R.id.fab);
     }
 

@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.ring.llog.LLog;
 import com.ring.mvp.ActivityPresenter;
+import com.ring.tools.custom.MSGDialog;
 import com.ring.tools.utils.SysUtils;
 
 public class MainActivity extends ActivityPresenter<MainViewDelegate> implements View.OnClickListener {
@@ -24,14 +25,19 @@ public class MainActivity extends ActivityPresenter<MainViewDelegate> implements
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
-        viewDelegate.setOnClickListener(this, R.id.fab);
+        viewDelegate.setOnClickListener(this, R.id.fab, R.id.btn_click);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.fab)
+        if (v.getId() == R.id.fab) {
             Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+        } else if (v.getId() == R.id.btn_click) {
+            MSGDialog msgDialog = new MSGDialog(this,true);
+            msgDialog.setLoadingMsg("loading...");
+            msgDialog.showLoading();
+        }
 
         LLog.i("info");
         LLog.i("tag", "234");
