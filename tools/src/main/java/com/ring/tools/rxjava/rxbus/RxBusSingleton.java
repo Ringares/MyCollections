@@ -1,4 +1,4 @@
-package com.ring.tools.rxbus;
+package com.ring.tools.rxjava.rxbus;
 
 
 import rx.Observable;
@@ -11,15 +11,15 @@ import rx.subjects.Subject;
  * on 16/1/18.
  * 单例存在
  */
-public class RxBus {
+public class RxBusSingleton {
 
-    private RxBus(){}
-    public static RxBus getInstance(){
+    private RxBusSingleton(){}
+    public static RxBusSingleton getInstance(){
         return SingleInstanceHolder.sInstance;
     }
 
     private static class SingleInstanceHolder{
-        private static RxBus sInstance = new RxBus();
+        private static RxBusSingleton sInstance = new RxBusSingleton();
     }
 
 

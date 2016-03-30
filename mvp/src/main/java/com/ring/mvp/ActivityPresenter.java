@@ -3,7 +3,12 @@ package com.ring.mvp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ring.tools.rxjava.RxUtils;
+import com.ring.tools.rxjava.rxbus.RxBus;
+
 import java.lang.reflect.ParameterizedType;
+
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by ring
@@ -11,6 +16,8 @@ import java.lang.reflect.ParameterizedType;
  */
 public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatActivity {
     protected T viewDelegate;
+    protected CompositeSubscription subscriptions;
+    private RxBus rxBus;
 
     private Class<T> getDelegateClass() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
@@ -19,7 +26,6 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
 
     public ActivityPresenter() {
         try {
-
             viewDelegate = getDelegateClass().newInstance();
 
         } catch (InstantiationException e) {
@@ -32,6 +38,9 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (rxBus == null) {
+            rxBus = new RxBus();
+        }
         viewDelegate.create(getLayoutInflater(), null, savedInstanceState);
         setContentView(viewDelegate.getRootView());
         viewDelegate.initWidget();
@@ -42,6 +51,19 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     protected void onDestroy() {
         super.onDestroy();
         viewDelegate = null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subscriptions = new CompositeSubscription();
+        bindRxObservable();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        RxUtils.unsubscribe(subscriptions);
     }
 
     @Override
@@ -58,6 +80,19 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
         }
     }
 
+    /**
+     * onCreate()时调用
+     */
     protected void bindEvenListener() {
+    }
+
+    /**
+     * onResume()时调用
+     */
+    protected void bindRxObservable() {
+    }
+
+    public RxBus getRxBus() {
+        return rxBus;
     }
 }

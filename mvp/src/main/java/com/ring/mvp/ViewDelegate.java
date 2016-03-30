@@ -1,5 +1,6 @@
 package com.ring.mvp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
@@ -47,6 +48,14 @@ public abstract class ViewDelegate implements IDelegate {
 
     public <T extends View> T getView(@IdRes int id) {
         return (T) bindView(id);
+    }
+
+    public <T extends Activity> T getActivity() {
+        return (T) rootView.getContext();
+    }
+
+    public <T extends ActivityPresenter> T getPresenter() {
+        return (T) rootView.getContext();
     }
 
     protected abstract int getRootLayoutId();

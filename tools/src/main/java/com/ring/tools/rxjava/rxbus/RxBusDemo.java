@@ -1,4 +1,4 @@
-package com.ring.tools.rxbus;
+package com.ring.tools.rxjava.rxbus;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -10,11 +10,11 @@ import rx.functions.Action1;
 public class RxBusDemo {
 
     public void send() {
-        RxBus.getInstance().send(new Object());
+        RxBusSingleton.getInstance().send(new Object());
     }
 
     public RxBusDemo() {
-        RxBus.getInstance().toObserverable()
+        RxBusSingleton.getInstance().toObserverable()
                 .compose(new Observable.Transformer<Object, Object>() {
                     @Override
                     public Observable<Object> call(Observable<Object> objectObservable) {

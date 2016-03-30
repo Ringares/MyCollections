@@ -5,32 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <!--<com.ring.tools.custom.circularprogressbar.CircularProgressBar-->
+    <!--android:id="@+id/progressbar_circular"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:indeterminate="true"-->
+    <!--android:indeterminateOnly="false"-->
+    <!--app:cpb_color="#ffff4000" />-->
 
-    <com.ring.tools.custom.circularprogressbar.CircularProgressBar
-        android:id="@+id/progressbar_circular"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
-        android:indeterminate="true"
-        android:indeterminateOnly="false"
-        app:cpb_color="#ffff4000" />
-
-    <Button
-        android:id="@+id/btn_click"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CLICK"/>
+        android:layout_height="1dp"
+        android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
