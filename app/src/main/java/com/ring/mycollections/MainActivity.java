@@ -13,6 +13,7 @@ import com.ring.mycollections.data.Contact;
 import com.ring.mycollections.recyclerView.ContactAdapter;
 import com.ring.tools.custom.MSGDialog;
 import com.ring.tools.recyclerview.EndlessRecyclerViewScrollListener;
+import com.ring.tools.utils.SysUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,8 @@ public class MainActivity extends ActivityPresenter<MainViewDelegate> implements
             public void call(Object event) {
                 if (event instanceof MainViewDelegate.LoadMoreDataEvent) {
                     loadMoreData(((MainViewDelegate.LoadMoreDataEvent) event).page);
+                } else if (event instanceof MainViewDelegate.LongClickEvent) {
+                    SecondActivity.start(MainActivity.this);
                 }
             }
         }));
@@ -123,14 +126,14 @@ public class MainActivity extends ActivityPresenter<MainViewDelegate> implements
             }
         }
 
-//        LLog.i("info");
-//        LLog.i("tag", "234");
-//        LLog.d("tag", "234", this, toolbar);
-//        LLog.json("{\"status\":1020,\"desc\":\"NO_RESULT\"}");
-//        LLog.w(SysUtils.getVerCode(MainActivity.this));
-//        LLog.w(SysUtils.getVerName(MainActivity.this));
-//        LLog.w(SysUtils.isNetworkAvailable(MainActivity.this));
-//        LLog.w(SysUtils.isSDCardAvailable());
-//        LLog.e(viewDelegate.getRootView().getContext());
+        LLog.i("info");
+        LLog.i("tag", "234");
+        LLog.d("tag", "234", this, toolbar);
+        LLog.json("{\"status\":1020,\"desc\":\"NO_RESULT\"}");
+        LLog.w(SysUtils.getVerCode(MainActivity.this));
+        LLog.w(SysUtils.getVerName(MainActivity.this));
+        LLog.w(SysUtils.isNetworkAvailable(MainActivity.this));
+        LLog.w(SysUtils.isSDCardAvailable());
+        LLog.e(viewDelegate.getRootView().getContext());
     }
 }

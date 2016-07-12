@@ -18,6 +18,7 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
     protected T viewDelegate;
     protected CompositeSubscription subscriptions;
     private RxBus rxBus;
+    private boolean isNeedSetRootViewProperty = false;
 
     private Class<T> getDelegateClass() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();

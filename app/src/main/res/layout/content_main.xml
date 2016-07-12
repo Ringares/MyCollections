@@ -7,7 +7,9 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background="@color/white"
+    >
 
     <!--<com.ring.tools.custom.circularprogressbar.CircularProgressBar-->
     <!--android:id="@+id/progressbar_circular"-->
@@ -17,6 +19,11 @@
     <!--android:indeterminate="true"-->
     <!--android:indeterminateOnly="false"-->
     <!--app:cpb_color="#ffff4000" />-->
+
+    <com.ring.tools.custom.ScrollInAnimViewGroup
+        android:id="@+id/swipeAnimViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list"

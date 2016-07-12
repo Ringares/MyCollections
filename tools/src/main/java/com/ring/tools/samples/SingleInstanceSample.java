@@ -7,14 +7,12 @@ package com.ring.tools.samples;
  * 利用类的静态初始化会在类被加载时触发的原理,实现比较好的 懒汉式单例
  */
 public class SingleInstanceSample {
-    private SingleInstanceSample() {
-    }
 
     public static SingleInstanceSample getInstance() {
         return SingleInstanceSampleHolder.sInstance;
     }
 
     private static class SingleInstanceSampleHolder {
-        private static SingleInstanceSample sInstance = new SingleInstanceSample();
+        public static final SingleInstanceSample sInstance = new SingleInstanceSample();
     }
 }

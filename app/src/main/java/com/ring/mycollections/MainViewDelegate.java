@@ -2,12 +2,13 @@ package com.ring.mycollections;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.ring.mvp.ViewDelegate;
 import com.ring.mycollections.recyclerView.SpacesItemDecoration;
+import com.ring.tools.custom.ScrollInAnimViewGroup;
 import com.ring.tools.utils.DisplayUtils;
 
 /**
@@ -17,6 +18,7 @@ import com.ring.tools.utils.DisplayUtils;
 public class MainViewDelegate extends ViewDelegate {
 
     private RecyclerView rv_list;
+    private Toolbar toolbar;
 
     @Override
     protected int getRootLayoutId() {
@@ -27,14 +29,22 @@ public class MainViewDelegate extends ViewDelegate {
     public void initWidget() {
         super.initWidget();
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(((Toolbar) getView(R.id.toolbar)));
+        toolbar = getView(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(((Toolbar) toolbar));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setLogo(R.mipmap.ic_launcher);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayUseLogoEnabled(true);
+        //getView(R.id.toolbar).setPadding(0, DisplayUtils.getStatusBarHeight(getActivity().getApplicationContext()), 0, 0);
 
         FloatingActionButton fab = getView(R.id.fab);
-
+        fab.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                getPresenter().getRxBus().send(new LongClickEvent());
+                return true;
+            }
+        });
         rv_list = getView(R.id.rv_list);
 
 //        GridLayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
@@ -55,6 +65,12 @@ public class MainViewDelegate extends ViewDelegate {
 //                getPresenter().getRxBus().send(new LoadMoreDataEvent(page));
 //            }
 //        });
+
+        ScrollInAnimViewGroup scrollInAnimViewGroup = getView(R.id.swipeAnimViewGroup);
+        View inflate = getActivity().getLayoutInflater().inflate(R.layout.adapter_item_test, null);
+        View inflate2 = getActivity().getLayoutInflater().inflate(R.layout.adapter_item_test, null);
+        View inflate3 = getActivity().getLayoutInflater().inflate(R.layout.adapter_item_test, null);
+        scrollInAnimViewGroup.addViews(inflate, inflate2, inflate3);
     }
 
     public void setListData(RecyclerView.Adapter adapter) {
@@ -63,10 +79,6 @@ public class MainViewDelegate extends ViewDelegate {
 
     public void scrollListToPosition(int position) {
         rv_list.scrollToPosition(position);
-    }
-
-    protected void onListScrollToEnd() {
-
     }
 
     static class LoadMoreDataEvent {
@@ -79,6 +91,13 @@ public class MainViewDelegate extends ViewDelegate {
         @Override
         public String toString() {
             return "LoadMoreDataEvent";
+        }
+    }
+
+    static class LongClickEvent {
+        @Override
+        public String toString() {
+            return "LongClickEvent";
         }
     }
 }
