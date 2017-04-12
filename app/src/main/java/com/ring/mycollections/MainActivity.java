@@ -1,11 +1,14 @@
 package com.ring.mycollections;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.ring.llog.LLog;
 import com.ring.mvp.ActivityPresenter;
@@ -76,11 +79,25 @@ public class MainActivity extends ActivityPresenter<MainViewDelegate> implements
                 });
     }
 
+    private void toWeChatScan() {
+        try {
+            //利用Intent打开微信
+            Uri uri = Uri.parse("weixin://dl/scan");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        } catch (Exception e) {
+            //若无法正常跳转，在此进行错误处理
+            Toast.makeText(getApplicationContext(), "无法跳转到微信，请检查您是否安装了微信！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
 //            Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show();
+            toWeChatScan();
+
             if (contactsList.size() != 0) {
                 contactsList.add(0, new Contact("Tome", true));
                 adapter.notifyItemInserted(0);
@@ -117,6 +134,12 @@ public class MainActivity extends ActivityPresenter<MainViewDelegate> implements
                             @Override
                             public void onLoadMore(int page, int totalItemsCount) {
                                 loadMoreData(page);
+                            }
+
+                            @Override
+                            public void onLoadPre(int page, int totalItemsCount) {
+                                contactsList.add(0, new Contact("Tome", true));
+                                adapter.notifyItemInserted(0);
                             }
                         });
                         MainActivity.this.viewDelegate.setListData(adapter);

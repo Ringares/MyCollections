@@ -50,22 +50,39 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         return maxSize;
     }
 
+    public int getFirstVisibleItem(int[] firstVisibleItemPositions) {
+        int min = 0;
+        for (int i = 0; i < firstVisibleItemPositions.length; i++) {
+            if (i == 0) {
+                min = firstVisibleItemPositions[i];
+            } else if (firstVisibleItemPositions[i] < min) {
+                min = firstVisibleItemPositions[i];
+            }
+        }
+        return min;
+    }
+
     // This happens many times a second during a scroll, so be wary of the code you place here.
     // We are given a few useful parameters to help us work out if we need to load some more data,
     // but first we check if we are waiting for the previous load to finish.
     @Override
     public void onScrolled(RecyclerView view, int dx, int dy) {
         int lastVisibleItemPosition = 0;
+        int firstVisibleItemPosition = 0;
         int totalItemCount = mLayoutManager.getItemCount();
 
         if (mLayoutManager instanceof StaggeredGridLayoutManager) {
             int[] lastVisibleItemPositions = ((StaggeredGridLayoutManager) mLayoutManager).findLastVisibleItemPositions(null);
+            int[] firstVisibleItemPositions = ((StaggeredGridLayoutManager) mLayoutManager).findFirstVisibleItemPositions(null);
             // get maximum element within the list
             lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions);
+            firstVisibleItemPosition = getFirstVisibleItem(firstVisibleItemPositions);
         } else if (mLayoutManager instanceof LinearLayoutManager) {
             lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
+            firstVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findFirstVisibleItemPosition();
         } else if (mLayoutManager instanceof GridLayoutManager) {
             lastVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findLastVisibleItemPosition();
+            firstVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findFirstVisibleItemPosition();
         }
 
         // If the total item count is zero and the previous isn't, assume the
@@ -94,9 +111,16 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
             onLoadMore(currentPage, totalItemCount);
             loading = true;
         }
+
+        if (!loading && (firstVisibleItemPosition - visibleThreshold) <0) {
+            currentPage++;
+            onLoadPre(currentPage, totalItemCount);
+            loading = true;
+        }
     }
 
     // Defines the process for actually loading more data based on page
     public abstract void onLoadMore(int page, int totalItemsCount);
+    public abstract void onLoadPre(int page, int totalItemsCount);
 
 }

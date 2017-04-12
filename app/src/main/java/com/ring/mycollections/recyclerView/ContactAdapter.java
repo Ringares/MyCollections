@@ -51,7 +51,7 @@ public class ContactAdapter<T extends Contact> extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         if (needLoadMore) {
-            if (position == getItemCount() - 1) {
+            if (position==0 || position == getItemCount() - 1) {
                 return TYPE_LOADING_MORE;
             }
         }
@@ -97,7 +97,7 @@ public class ContactAdapter<T extends Contact> extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return needLoadMore ? dataList.size() + 1 : dataList.size();
+        return needLoadMore ? dataList.size() + 2 : dataList.size();
     }
 
     public int getItemColumnSpan(int postion) {
