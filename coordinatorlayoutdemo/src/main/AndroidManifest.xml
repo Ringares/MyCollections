@@ -18,6 +18,9 @@
 
         <activity android:name=".TopNavBarHideActivity" />
         <activity android:name=".TopCollapsingActivity" />
+        <activity android:name=".TopBtmScrollActivity" />
+        <activity android:name=".TopBtmScrollActivity2" />
+        <activity android:name=".SwipeDismissActivity" />
     </application>
 
 </manifest>

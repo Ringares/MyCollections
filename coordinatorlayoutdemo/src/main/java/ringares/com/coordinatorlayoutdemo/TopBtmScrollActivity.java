@@ -14,20 +14,20 @@ import java.util.ArrayList;
  * on 17/4/11.
  */
 
-public class TopNavBarHideActivity extends AppCompatActivity {
+public class TopBtmScrollActivity extends AppCompatActivity {
 
     private RecyclerView rv;
     private DemoAdapter demoAdapter;
 
     public static void start(Context context) {
-        Intent starter = new Intent(context, TopNavBarHideActivity.class);
+        Intent starter = new Intent(context, TopBtmScrollActivity.class);
         context.startActivity(starter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_nav_hide);
+        setContentView(R.layout.activity_top_btm_scroll);
 
         ArrayList<DataBean> datas = new ArrayList<>();
         datas.add(new DataBean("Info", getString(R.string.text)));

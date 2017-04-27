@@ -11,11 +11,8 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
-
-import java.util.ArrayList;
 
 /**
  * Created by ring
@@ -37,18 +34,6 @@ public class TopCollapsingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_collapsing);
-
-        ArrayList<DataBean> datas = new ArrayList<>();
-        datas.add(new DataBean("Info", getString(R.string.text)));
-        datas.add(new DataBean("Info", getString(R.string.text)));
-        datas.add(new DataBean("Info", getString(R.string.text)));
-
-        rv = (RecyclerView) findViewById(R.id.rv);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(layoutManager);
-        demoAdapter = new DemoAdapter(R.layout.adapter_demo, datas);
-        rv.setAdapter(demoAdapter);
 
         collapsingToolBar = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolBar);
         collapsingToolBar.setTitle("CollapsingToolbarLayout");
