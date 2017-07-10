@@ -4,8 +4,8 @@
       <root url="jar://$PROJECT_DIR$/coordinatorlayoutdemo/build/intermediates/exploded-aar/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.7.8/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/coordinatorlayoutdemo/build/intermediates/exploded-aar/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.7.8/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/coordinatorlayoutdemo/build/intermediates/exploded-aar/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.7.8/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/eec7bc235baab0561f217576ecc8ee0046e8300c/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/eec7bc235baab0561f217576ecc8ee0046e8300c/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

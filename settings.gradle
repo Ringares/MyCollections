@@ -1,1 +1,1 @@
-include ':app', ':tools', ':llog', ':annotations', ':mvp', ':test', ':coordinatorlayoutdemo'
+include ':app', ':tools', ':llog', ':annotations', ':mvp', ':test', ':coordinatorlayoutdemo', ':topic_view'
